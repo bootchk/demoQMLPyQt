@@ -1,0 +1,15 @@
+Demonstrate Qt QML with PyQt
+
+Example how-to use Qt QML and Qt Quick Controls with PyQt.
+
+I have a QtWidgets app.
+I want to test these issues:
+- will QML fix style issues on mobile platforms:  QtWidgets does not have native style on iOS.
+- what widgets are missing in QML: form dialog and share view
+
+TODO:
+demo all widgets built-in
+model
+signals
+test iOS and Android for style
+resources
