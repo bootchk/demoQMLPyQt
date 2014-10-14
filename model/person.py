@@ -1,9 +1,18 @@
 
 from PyQt5.QtCore import pyqtProperty, QObject
+from PyQt5.QtCore import pyqtSlot as Slot
+from PyQt5.QtCore import pyqtSignal as Signal
 
-# This is the type that will be registered with QML.  It must be a
-# sub-class of QObject.
+'''
+A type that will be registered with QML.  
+Must be a sub-class of QObject.
+
+Largely from example in PyQt documentation.
+'''
 class Person(QObject):
+  
+    personChanged = Signal()
+    
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -32,8 +41,25 @@ class Person(QObject):
     @shoeSize.setter
     def shoeSize(self, shoeSize):
         self._shoeSize = shoeSize
-        
+    
+    " Must be slot to be callable/invokeable from QML JS"
+    @Slot()
+    def doActivated(self):
+      '''
+      Handle activated signal.
+      
+      Note connections (for instances) can be made from QML or from Python?
+      '''
+      print("Person.doActivated slot called")
+      print("Emitting personChanged")
+      self.personChanged.emit()
+      
+      
 """
+Cruft from original example code in PyQt docs.
+Here the component is created from the Python side.
+I chose instead to create the component in the qml file.
+
 from PyQt5.QtCore import QCoreApplication, QUrl
 from PyQt5.QtQml import qmlRegisterType, QQmlComponent, QQmlEngine
 

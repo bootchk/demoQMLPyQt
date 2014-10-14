@@ -1,10 +1,8 @@
 
-# Not used
-
 from PyQt5.QtCore import qWarning
 #from PyQt5.QtGui import QWindow
 from PyQt5.QtQml import QQmlApplicationEngine
-from PyQt5.QtQuick import QQuickWindow
+#from PyQt5.QtQuick import QQuickWindow
 
 
 class QuickWindowFactory(object):
