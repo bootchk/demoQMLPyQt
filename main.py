@@ -8,6 +8,7 @@ Drawn from examples:
 '''
 
 from qmlApp.qmlApp import QmlApp
+from widgetApp.widgetApp import WidgetApp
 
 '''
 Create and init app enters event loop, doesn't return
@@ -37,7 +38,22 @@ Uncomment one to test.
 " Test signals from QML to Python slot"
 #app = QmlApp(qml="qml/testSignals.qml")
 " Test signal from Python to QML"
-app = QmlApp(qml="qml/testSignalsUp.qml")
+#app = QmlApp(qml="qml/testSignalsUp.qml")
+
+
+'''
+QWidget app embedding QML
+'''
+# Toolbar doesn't work since menu and toolbar exclusive to ApplicationWindow
+#app = WidgetApp(qml="qml/bars/toolBar.qml")
+
+# Popup menu doesn't work?   Syntax error
+#app = WidgetApp(qml="qml/menu.qml")
+
+"These work"
+#app = WidgetApp(qml="qml/dialogs/fontDialog.qml")
+
+
 
 # Not work? No window or window not show()?
 # app = QmlApp(qml="qml/helloWorldRedRect.qml")

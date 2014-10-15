@@ -11,9 +11,11 @@ This project has several qml files that:
 - demo many widgets (Quick controls) built-in
 - demo a model (a Component) defined in Python
 - demo signals between QML and Python (back and forth)
+- demo nesting QML inside a QWidget (but reverse is not possible in Qt Quick 2 in Qt 5 ? but is Qt Quick 1 still in Qt 5?
 
 TODO:
 - test iOS and Android for style conformance
+- test whether QML dialogs nested in QWidget are full screen on mobile platforms
 - Use pyrcc to put the qml in resources
 - pyqtdeploy it
 
