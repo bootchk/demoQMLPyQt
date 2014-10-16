@@ -40,6 +40,8 @@ Uncomment one to test.
 " Test signal from Python to QML"
 #app = QmlApp(qml="qml/testSignalsUp.qml")
 
+# popup context menu from QML app
+app = QmlApp(qml="qml/testMenu.qml")
 
 '''
 QWidget app embedding QML
@@ -47,7 +49,7 @@ QWidget app embedding QML
 # Toolbar doesn't work since menu and toolbar exclusive to ApplicationWindow
 #app = WidgetApp(qml="qml/bars/toolBar.qml")
 
-# Popup menu doesn't work?   Syntax error
+# Popup menu from a QWidget app
 #app = WidgetApp(qml="qml/menu.qml")
 
 "These work"
