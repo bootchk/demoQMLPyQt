@@ -1,16 +1,9 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.2
-
-// Actions
-
-    Action {
-        id: fileAction
-        text: "&File"
-    }
-    
+import QtQuick.Layouts 1.1
 
 
-// This doesn't work, syntax error: a menubar can only be used in an ApplicationWindow
+// Syntax error if Actions defined ahead of this?
 
 
 ToolBar {
@@ -19,7 +12,7 @@ ToolBar {
             id: toolbarLayout
             spacing: 0
             width: parent.width
-            ToolButton { action: fileAction }
+            // ToolButton { action: fileAction }
             Item { Layout.fillWidth: true }
             CheckBox {
                 id: enabledCheck

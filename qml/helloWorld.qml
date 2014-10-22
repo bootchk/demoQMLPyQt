@@ -6,10 +6,10 @@ import QtQuick.Controls 1.2
 //import org.qtproject.demo.weather 1.0
 
 // Built-in Qt Quick component
-ApplicationWindow {
-  id: root
-  visible: true
-  height: 700
-  width: 1200
-  title: "Hello World"
-}
+	ApplicationWindow {
+	  id: root
+	  visible: true
+	  height: 700
+	  width: 1200
+	  title: "Hello World"
+	}

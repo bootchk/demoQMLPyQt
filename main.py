@@ -10,6 +10,7 @@ Drawn from examples:
 from qmlApp.qmlApp import QmlApp
 from widgetApp.widgetApp import WidgetApp
 
+
 '''
 Create and init app enters event loop, doesn't return
 '''
@@ -41,18 +42,26 @@ Uncomment one to test.
 #app = QmlApp(qml="qml/testSignalsUp.qml")
 
 # popup context menu from QML app
-app = QmlApp(qml="qml/testMenu.qml")
+#app = QmlApp(qml="qml/testMenu.qml")
+
+
 
 '''
 QWidget app embedding QML
 '''
-# Toolbar doesn't work since menu and toolbar exclusive to ApplicationWindow
+# Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
 #app = WidgetApp(qml="qml/bars/toolBar.qml")
+
+# menuBar does NOT seem to work
+app = WidgetApp(qml="qml/bars/menuBar.qml")
+
+# This doesn't work: 'QQuickView only supports loading of root objects that derive from QQuickItem.'
+#app = WidgetApp(qml="qml/helloWorld.qml")
+
+"These work"
 
 # Popup menu from a QWidget app
 #app = WidgetApp(qml="qml/menu.qml")
-
-"These work"
 #app = WidgetApp(qml="qml/dialogs/fontDialog.qml")
 
 

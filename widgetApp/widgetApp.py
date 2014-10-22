@@ -24,9 +24,9 @@ class WidgetApp(object):
     
     " mainWindow has layout has widget has quickview"
     layout = QVBoxLayout()
-    quickMenubar = QQuickView(self.qmlFilenameToQUrl(qml))
-    menubarContainer = QWidget.createWindowContainer(quickMenubar)
-    layout.addWidget(menubarContainer)
+    quickThing = QQuickView(self.qmlFilenameToQUrl(qml))
+    quickThingContainer = QWidget.createWindowContainer(quickThing)
+    layout.addWidget(quickThingContainer)
     mainWindow.setLayout(layout)
 
     # Qt Main loop
@@ -39,4 +39,5 @@ class WidgetApp(object):
       print(qmlUrl.path())
       #assert qmlUrl.isLocalFile()
       return qmlUrl
+  
   
