@@ -11,6 +11,8 @@ Test menu, pure QML, inside
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 
+import "menus" as MyMenu
+
 ApplicationWindow {
     visible: true
     title: "Test "
@@ -22,20 +24,10 @@ ApplicationWindow {
 
 		
 	// ContextMenu is Qt Quick 1.0, or only DesktopComponents?
+	// contextMenu.showPopup(mouseX,mouseY)
 	
-    // A context menu to be popped up with RMB in app window
-	Menu {
+	MyMenu.Menu {
 		id: menu
-		title: "&Choosers"
-		/*
-		Read QML Menu doc
-		'visible' is not a property unless a submenu.
-		This is currently a top-level menu.
-		*/ 
-		// Some posts suggest a hidden property? _xOffset: 10
-		
-		MenuItem { text: "bar"  }
-		MenuItem { text: "foo" }
 	}
 	
     MouseArea {
@@ -44,5 +36,7 @@ ApplicationWindow {
         onPressed: menu.popup()
     }
 	
-	// contextMenu.showPopup(mouseX,mouseY)
+	Text {
+		text: "RMB to popup menu"
+	}
 }

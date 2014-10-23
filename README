@@ -6,12 +6,13 @@ I have a QtWidgets app.
 I want to test these issues:
 - will QML fix style issues on mobile platforms:  QtWidgets does not have native style on iOS.
 - what widgets are missing in QML: form dialog and share sheet/button
+- what architectures work (nesting QML in QWidget or vice versa)
 
-This project has several qml files that:
-- demo many widgets (Quick controls) built-in
-- demo a model (a Component) defined in Python
-- demo signals between QML and Python (back and forth)
-- demo nesting QML inside a QWidget (but reverse is not possible in Qt Quick 2 in Qt 5 ? but is Qt Quick 1 still in Qt 5?
+This project has several qml files that demo:
+- many built-in widgets (Quick controls)
+- a model (a Component) defined in Python
+- signals between QML and Python (back and forth)
+- architectures: nesting QML inside a QWidget (but reverse is not possible in Qt Quick 2 in Qt 5 ? but is Qt Quick 1 still in Qt 5?
 
 TODO:
 - test iOS and Android for style conformance

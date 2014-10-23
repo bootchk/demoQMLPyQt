@@ -33,37 +33,42 @@ Uncomment one to test.
 #app = QmlApp(qml="qml/testDialogs.qml")
 #app = QmlApp(qml="qml/testViews.qml")
 #app = QmlApp(qml="qml/testBars.qml")
+#app = QmlApp(qml="qml/testMenu.qml")
 
-# ??? button.activated.connect(person.onActivated)
 
 " Test signals from QML to Python slot"
 #app = QmlApp(qml="qml/testSignals.qml")
 " Test signal from Python to QML"
 #app = QmlApp(qml="qml/testSignalsUp.qml")
 
-# popup context menu from QML app
-#app = QmlApp(qml="qml/testMenu.qml")
+
 
 
 
 '''
 QWidget app embedding QML
 '''
-# Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
-#app = WidgetApp(qml="qml/bars/toolBar.qml")
+
 
 # menuBar does NOT seem to work
-app = WidgetApp(qml="qml/bars/menuBar.qml")
+#app = WidgetApp(qml="qml/bars/menuBar.qml")
 
 # This doesn't work: 'QQuickView only supports loading of root objects that derive from QQuickItem.'
 #app = WidgetApp(qml="qml/helloWorld.qml")
 
 "These work"
 
-# Popup menu from a QWidget app
+# Popup menu
 #app = WidgetApp(qml="qml/menu.qml")
+
 #app = WidgetApp(qml="qml/dialogs/fontDialog.qml")
 
+# Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
+#app = WidgetApp(qml="qml/bars/toolBar.qml")
+
+
+# Test toolbar and popupmenu 
+app = WidgetApp(qml="qml/bars/toolBar.qml")
 
 
 # Not work? No window or window not show()?
