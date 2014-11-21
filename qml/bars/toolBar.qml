@@ -8,6 +8,7 @@ import QtQuick.Layouts 1.1
 
 ToolBar {
         id: toolbar
+        objectName: "toolbar"
         RowLayout {
             id: toolbarLayout
             spacing: 0

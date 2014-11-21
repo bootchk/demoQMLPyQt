@@ -1,20 +1,24 @@
 
 import sys
 
-from PyQt5.QtCore import QObject, QUrl
 from PyQt5.QtCore import qWarning
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickItem, QQuickWindow
+from PyQt5.QtQml import QQmlApplicationEngine
 
 from qmlApp.qmlModel import QmlModel
 from model.person import Person
 
-from PyQt5.QtQml import QQmlApplicationEngine
+from qmlMaster.qmlMaster import QmlMaster
+
+
+
 
 class QmlApp(object):
   '''
-  Contains QApp without reference to a window.
+  Contains QApp without reference to a QWidget.
   I.E. all windows defined in qml file.
+  Contrast with WidgetApp.
   
   Has event loop (never returns)
   '''
@@ -22,10 +26,12 @@ class QmlApp(object):
     app = QGuiApplication(sys.argv)
     
     '''
-    Register our Python model (classes/types to be registered with QML.)
+    Register our Python models (classes/types to be registered with QML.)
     '''
     model = QmlModel()
     model.register()
+    
+    self.qmlMaster = QmlMaster()
     
     engine = QQmlApplicationEngine()
     '''
@@ -33,17 +39,17 @@ class QmlApp(object):
     OW, qWarnings to stdio.
     engine.warnings.connect(self.errors)
     '''
-    engine.load(self.qmlFilenameToQUrl(qml))
+    engine.load(self.qmlMaster.qmlFilenameToQUrl(qml))
     engine.quit.connect(app.quit)
-    '''
-    We really don't need to keep a reference to engine,
-    the methods below that use it are fluff.
-    '''
+    
+    " Keep reference to engine, used by root() "
     self.engine = engine
     
-    # Test must show window before can find objects?
+    '''
+    Window is shown by default.
     window = self.getWindow()
     window.show()
+    '''
     
     '''
     Suggested architecture is for model layer (Python) not to know of UI layer,
@@ -51,18 +57,11 @@ class QmlApp(object):
     The model layer can emit signals to UI layer and vice versa,
     but only the UI layer knows what connections to make
     '''
-    #self.makeConnections()
+    self.makeConnections()
     
     app.exec_()   # !!! C exec => Python exec_
     print("Application returned")
-    
-    
-  def qmlFilenameToQUrl(self,qml):
-    qmlUrl=QUrl(qml)
-    assert qmlUrl.isValid()
-    print(qmlUrl.path())
-    #assert qmlUrl.isLocalFile()
-    return qmlUrl
+
     
     
   def makeConnections(self):
@@ -70,36 +69,19 @@ class QmlApp(object):
     Connections
     Here, make connection on the Python side
     
-    NOT WORKING, and of dubious value
+    Of dubious value
     '''
     # Connect button signal to person handler
-    self.dumpQMLComponents()
-    button = self.findComponent(QQuickItem, "button")
-    foo = self.findComponent(Person, "foo")
-    button.activated.connect(foo.doActivated)
-    
-  
-  def findComponent(self, aType, name):
-    assert isinstance(name, str)
-    result = self.getWindow().findChild(aType, name)
-    #result = self.getWindow().findChild(QObject, name)
+    button = self.qmlMaster.findComponentFromRoot(root=self.root(), className=QQuickItem, objectName="button")
+    foo = self.qmlMaster.findComponentFromRoot(root=self.root(), className=Person, objectName="foo")
+    if button is not None and foo is not None:
+      button.activated.connect(foo.doActivated)
+    else:
+      print("Can't connect nonexistent button or non-existent model.")
 
-    if result is None:
-      print("Failed to find instance named:", name, " of type:", aType)
-      raise RuntimeError
-    assert result is None or isinstance(result, QQuickItem)
-    return result
-  
-  
-  def dumpQMLComponents(self):
-    children = self.getWindow().findChildren(QObject)
-    for item in children:
-      # Note the QML id property is NOT the objectName
-      print(item, "name is:", item.objectName())
     
-    
-  def getWindow(self):
-    " QQuickWindow containing QML app's GUI"
+  def root(self):
+    " QmlApp's root comes from engine."
     try:
       qmlRoot = self.engine.rootObjects()[0]
     except:
@@ -109,6 +91,11 @@ class QmlApp(object):
     print(qmlRoot)
     assert isinstance(qmlRoot, QQuickWindow)
     return qmlRoot
+    
+    
+  def getWindow(self):
+    " QQuickWindow containing QML app's GUI"
+    return self.root()
     
   
     

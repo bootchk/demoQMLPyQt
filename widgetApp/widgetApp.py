@@ -3,23 +3,19 @@ App whose outer is QWidget, having embedded QML
 '''
 import sys
 
-from PyQt5.QtCore import QUrl # QObject, 
-#from PyQt5.QtCore import qWarning
+
 from PyQt5.QtWidgets import QApplication, QVBoxLayout
-
 #from PyQt5.QtGui import QGuiApplication
-
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtQuick import QQuickView
-
 
 from widgetApp.graphicsView import MyGraphicsView
 
 from qmlApp.qmlModel import QmlModel
+from qmlMaster.qmlMaster import QmlMaster
 
 
 class WidgetApp(object):
-  def __init__(self, qml):
+  def __init__(self, embeddedQml, secondEmbeddedQml=None):
     app = QApplication(sys.argv)
     
     '''
@@ -28,7 +24,7 @@ class WidgetApp(object):
     model = QmlModel()
     model.register()
     
-    contextMenuView = QQuickView(self.qmlFilenameToQUrl("qml/PickMenu.qml"))
+    qmlMaster = QmlMaster()
     
     " simple widget, not QMainWindow"
     mainWindow = QWidget()
@@ -38,30 +34,40 @@ class WidgetApp(object):
     " mainWindow has layout has widget has quickview"
     layout = QVBoxLayout()
     
-    " Add QML toolbar to main window."
-    quickThing = QQuickView(self.qmlFilenameToQUrl(qml))
-    quickThingContainer = QWidget.createWindowContainer(quickThing)
-    layout.addWidget(quickThingContainer)
+    '''
+    Embed QML to main window.
+    Typically a toolbar or dialog
+    '''
+    layout.addWidget(qmlMaster.widgetForQML(qmlFilename=embeddedQml))
     
+    '''
+    ??? No need for this.  Has strange effects.
+    '''
+    #quickThingContainer.show()
+    #quickThing.show()
+    
+    if secondEmbeddedQml is not None:
+      '''
+      Create QQuickView to pass to GV.
+      Typically contains menu or dialog that GV will present on certain events
+      (keypress for dialog, mouseclick for menu.)
+      '''
+      myView = qmlMaster.quickViewForQML(qmlFilename=secondEmbeddedQml)
+    else:
+      myView = None
+      
     " Add QGV to main window"
-    gv = MyGraphicsView(pickerView=contextMenuView)
+    #gv = MyGraphicsView(pickerView=contextMenuView, dialogView=dialogView)
+    gv = MyGraphicsView(pickerView=myView)
     layout.addWidget(gv)
-    
     mainWindow.setLayout(layout)
 
-    
-    
     " Connections are defined inside the QML"
 
     # Qt Main loop
     sys.exit(app.exec_())
 
 
-  def qmlFilenameToQUrl(self,qml):
-      qmlUrl=QUrl(qml)
-      assert qmlUrl.isValid()
-      print(qmlUrl.path())
-      #assert qmlUrl.isLocalFile()
-      return qmlUrl
+  
   
   

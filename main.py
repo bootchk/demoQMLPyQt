@@ -43,36 +43,35 @@ Uncomment one to test.
 
 
 
-
-
 '''
 QWidget app embedding QML
 '''
 
-
 # menuBar does NOT seem to work
-#app = WidgetApp(qml="qml/bars/menuBar.qml")
+#app = WidgetApp(embeddedQml="qml/bars/menuBar.qml")
 
 # This doesn't work: 'QQuickView only supports loading of root objects that derive from QQuickItem.'
-#app = WidgetApp(qml="qml/helloWorld.qml")
+#app = WidgetApp(embeddedQml="qml/helloWorld.qml")
 
 "These work"
 
 # Popup menu
-#app = WidgetApp(qml="qml/menu.qml")
+#app = WidgetApp(embeddedQml="qml/menu.qml")
 
-#app = WidgetApp(qml="qml/dialogs/fontDialog.qml")
+# dialog not working?
+#app = WidgetApp(embeddedQml="qml/dialogs/fontDialog.qml")
 
 # Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
-#app = WidgetApp(qml="qml/bars/toolBar.qml")
-
+app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/MenuAndDialog.qml")
+#"qml/PickMenu.qml"
+#"qml/dialogs/dialog.qml"
 
 # Test toolbar and popupmenu 
-app = WidgetApp(qml="qml/bars/toolBar.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml")
 
 
-# Not work? No window or window not show()?
-# app = QmlApp(qml="qml/helloWorldRedRect.qml")
+# Not work? QmlApp requires a QWindow, which this does not have
+#app = QmlApp(qml="qml/helloWorldRedRect.qml")
 
 
   

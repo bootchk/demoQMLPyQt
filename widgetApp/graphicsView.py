@@ -1,10 +1,12 @@
 
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene
-from PyQt5.QtCore import qWarning, QObject
-from PyQt5.QtQuick import QQuickItem
 
+
+
+from qmlMaster.qmlMaster import QmlMaster
 #from model.person import Person
 import model
+
 
 class MyGraphicsView(QGraphicsView):
   '''
@@ -14,8 +16,9 @@ class MyGraphicsView(QGraphicsView):
   
   def __init__(self, pickerView):
     scene = QGraphicsScene()
-    scene.addText("foo")
+    scene.addText("QGraphicsItem to be mock picked.")
     QGraphicsView.__init__(self, scene)
+    self.qmlMaster = QmlMaster()
     
     '''
     See the QML, created there?
@@ -23,56 +26,56 @@ class MyGraphicsView(QGraphicsView):
     " A Person model which is mock-picked"
     self.model = Person()
     '''
-    self.pickerView = pickerView
-    " Find the picker"
-    self.picker = self.findPicker()
+    if pickerView is not None:
+      self.pickerView = pickerView
+      #self.dialogView = dialogView
+      
+      #self.pickDelegate = self.findPickDelegate()
+      self.pickDelegate = self.qmlMaster.findComponent(self.pickerView, className=model.person.Person, objectName="person")
+      
+      #self.dialogDelegate = self.qmlMaster.findComponent(self.dialogView, className=model.qmlDelegate.QmlDelegate, objectName="dialogDelegate")
+      self.dialogDelegate = self.qmlMaster.findComponent(self.pickerView, className=model.qmlDelegate.QmlDelegate, objectName="dialogDelegate")
+    else:
+      self.pickDelegate = None
+      self.dialogDelegate = None
+    #self.findQMLControl()
 
-  
     
     
   def mousePressEvent(self, event):
-    self.picker.doActivated()  # cause signal to be emitted to QML
+    '''
+    Treat any mousePressEvent as a mock pick of the QGraphicsItem.
+    '''
+    if self.pickDelegate is not None:
+      self.pickDelegate.doActivated()  # cause signal to be emitted to QML
     print("pressed")
     
     
-  def findPicker(self):
-    try:
-      qmlRoot = self.pickerView.rootObject()  # objects()[0]
-    except:
-      qWarning("Failed to read or parse qml.")
-      raise
-    
-    print(qmlRoot)
-    assert isinstance(qmlRoot, QQuickItem)
-    
-    result = self.findComponent(qmlRoot)
-    
+  def keyPressEvent(self, event):
     '''
-    self.dumpQMLComponents(qmlRoot)
-    
-    #result = qmlRoot.findChild(Person, "person")
-    result = qmlRoot.findChild(model.person.Person, "person")
+    Any key opens dialog.
     '''
+    print("Key pressed")
+    if self.dialogDelegate is not None:
+      self.dialogDelegate.activate()
+    
+    
+  def findPickDelegate(self):
+    '''
+    Find the model component of self's view.
+    The model is a delegate.  When it's doActivated() method is called, it delegates
+    to a QML control (menu or other dialog.)
+    ??? Why can't we just call the method on the QML control.
+    '''
+    result = self.qmlMaster.findComponent(self.pickerView, className=model.person.Person, objectName="person")
     assert result is not None
     return result
     
   
-  def dumpQMLComponents(self, root):
-    children = root.findChildren(QObject)
-    for item in children:
-      # Note the QML id property is NOT the objectName
-      print(item, "name is:", item.objectName())
-      if isinstance(item, model.person.Person):
-        print("Is Person")
+    
+  
+  
         
-  def findComponent(self, root):
-    result = None
-    children = root.findChildren(QObject)
-    for item in children:
-      # Note the QML id property is NOT the objectName
-      if isinstance(item, model.person.Person) and item.objectName()=="person":
-        print("Found Person", item.objectName())
-        result = item
-        break
-    return result
+        
+  
     

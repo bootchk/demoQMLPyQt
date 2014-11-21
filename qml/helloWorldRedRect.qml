@@ -1,5 +1,8 @@
-import QtQuick 2.1
- 
+import QtQuick 2.3
+
+// Not use controls
+// import QtQuick.Controls 1.2
+
 Rectangle {
     width: 200
     height: 200

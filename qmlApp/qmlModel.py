@@ -3,6 +3,7 @@ from PyQt5.QtQml import qmlRegisterType
 # qmlRegisterSingletonType #, QQmlComponent, QQmlEngine
 
 from model.person import Person
+from model.qmlDelegate import QmlDelegate
 
 class QmlModel(object):
   '''
@@ -27,3 +28,4 @@ class QmlModel(object):
     Unlike c++, where you cast result to a type, in Python first arg is type
     '''
     qmlRegisterType(Person, 'People', 1, 0, 'Person')
+    qmlRegisterType(QmlDelegate, 'QmlDelegate', 1, 0, 'DialogDelegate')
