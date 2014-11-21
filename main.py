@@ -62,9 +62,18 @@ QWidget app embedding QML
 #app = WidgetApp(embeddedQml="qml/dialogs/fontDialog.qml")
 
 # Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
-app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/MenuAndDialog.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml")
+
+# Toolbar, context menu, and dialog
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/MenuAndDialog.qml")
 #"qml/PickMenu.qml"
 #"qml/dialogs/dialog.qml"
+
+# Dialog with controls.  Slider owning model
+app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWControls.qml")
+
+
+
 
 # Test toolbar and popupmenu 
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml")

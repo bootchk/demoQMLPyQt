@@ -44,13 +44,13 @@ class Person(QObject):
     
     " Must be slot to be callable/invokeable from QML JS"
     @Slot()
-    def doActivated(self):
+    def activate(self):
       '''
       Handle activated signal.
       
       Note connections (for instances) can be made from QML or from Python?
       '''
-      print("Person.doActivated slot called")
+      print("Person.activate slot called")
       print("Emitting personChanged")
       self.personChanged.emit()
       

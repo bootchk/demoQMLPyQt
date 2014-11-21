@@ -47,7 +47,7 @@ class MyGraphicsView(QGraphicsView):
     Treat any mousePressEvent as a mock pick of the QGraphicsItem.
     '''
     if self.pickDelegate is not None:
-      self.pickDelegate.doActivated()  # cause signal to be emitted to QML
+      self.pickDelegate.activate()  # cause signal to be emitted to QML
     print("pressed")
     
     
@@ -63,8 +63,9 @@ class MyGraphicsView(QGraphicsView):
   def findPickDelegate(self):
     '''
     Find the model component of self's view.
-    The model is a delegate.  When it's doActivated() method is called, it delegates
-    to a QML control (menu or other dialog.)
+    The model is a delegate.  When it's activate() method is called, it delegates
+    to a QML control (menu or other dialog.) (view<-, i.e. show a GUI)
+    ??? or emits a signal connected to business logic (control->)
     ??? Why can't we just call the method on the QML control.
     '''
     result = self.qmlMaster.findComponent(self.pickerView, className=model.person.Person, objectName="person")

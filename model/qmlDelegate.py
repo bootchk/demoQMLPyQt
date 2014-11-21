@@ -37,7 +37,7 @@ class QmlDelegate(QObject):
       
       Note connections (for instances) can be made from QML or from Python?
       '''
-      print(".doActivated slot called")
+      print(".activate slot called")
       print("Emitting activated")
       self.activated.emit()
       

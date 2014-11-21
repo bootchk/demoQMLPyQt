@@ -75,7 +75,7 @@ class QmlApp(object):
     button = self.qmlMaster.findComponentFromRoot(root=self.root(), className=QQuickItem, objectName="button")
     foo = self.qmlMaster.findComponentFromRoot(root=self.root(), className=Person, objectName="foo")
     if button is not None and foo is not None:
-      button.activated.connect(foo.doActivated)
+      button.activated.connect(foo.activate)
     else:
       print("Can't connect nonexistent button or non-existent model.")
 
