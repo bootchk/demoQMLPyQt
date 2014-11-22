@@ -7,6 +7,7 @@ Note findChild was broken until recently, see PyQt mail list report.
 result = qmlRoot.findChild(model.person.Person, "person")
 '''
 from PyQt5.QtCore import qWarning, QObject, QUrl
+from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtQuick import QQuickItem, QQuickView
 from PyQt5.QtQml import QQmlProperty
@@ -23,14 +24,14 @@ class QmlMaster(object):
     try:
       qmlRoot = quickview.rootObject()  # objects()[0]
     except:
-      qWarning("Failed to read or parse qml.")
+      qWarning("quickview empty: failed to read or parse qml?")
       raise
     
-    print(qmlRoot)
+    #print(qmlRoot)
     assert isinstance(qmlRoot, QQuickItem)
     return qmlRoot
 
-
+  
   def findComponent(self, quickview, className, objectName):
       '''
       In quickview, find child with class className and objectName equal to objectName.
@@ -92,29 +93,79 @@ class QmlMaster(object):
   def qmlFilenameToQUrl(self, qml):
     qmlUrl=QUrl(qml)
     assert qmlUrl.isValid()
-    print(qmlUrl.path())
+    #print(qmlUrl.path())
     #assert qmlUrl.isLocalFile()
     return qmlUrl
     
     
-  def quickViewForQML(self, qmlFilename):
+  def quickViewForQML(self, qmlFilename, transientParent=None):
     '''
     Create a QQuickView for qmlFilename.
     More robust: connects to error
     '''
+    
     quickView = QQuickView()
     quickView.statusChanged.connect(self.onStatusChanged)
-    quickView.setSource(self.qmlFilenameToQUrl(qmlFilename))
+    qurl = self.qmlFilenameToQUrl(qmlFilename)
+    quickView.setSource(qurl)
+    '''
+    Show() the enclosing QWindow?
+    But this means the window for e.g. the toolbar is visible separately?
+    '''
+    #quickView.show()
+    print("Created QQuickView for:", qurl.path())
+    if transientParent is not None:
+      quickView.setTransientParent(transientParent)
     return quickView
   
   
-  def widgetForQML(self, qmlFilename):
-    ''' Wrap QQuickView in QWidget window. '''
-    quickview = QQuickView(self.qmlFilenameToQUrl(qmlFilename))
-    result = QWidget.createWindowContainer(quickview)
+  def widgetAndQuickViewForQML(self, qmlFilename, transientParent=None):
+    '''
+    widget containing quickview, and quickview itself.
+    See QTBUG-32934, you can't find the QWindow from the container QWidget, you must remember it.
+    '''
+    quickview = self.quickViewForQML(qmlFilename, transientParent)
+    widget = QWidget.createWindowContainer(quickview)
+    return widget, quickview
+  
+  
+  def widgetForQML(self, qmlFilename, parentWindow):
+    ''' 
+    Put QML in QQuickView and wrap in QWidget window. 
+    
+    I found that if you don't parent the widget,
+    you get strange behaviour such as QML Dialog not visible when you open() it.
+    '''
+    quickview = self.quickViewForQML(qmlFilename)
+    result = self.widgetForQuickView(quickview, parentWindow)
     return result
   
+  
+  def widgetForQuickView(self, quickview, parentWindow):
+    ''' Wrap QQuickView in QWidget window. '''
+    return QWidget.createWindowContainer(quickview, parent=parentWindow)
+  
+  
+  def appQWindow(self):
+    '''
+    QWindow of app, or None.
+    
+    Needed to transientParent a QQuickView to app QWindow.
+    '''
+    qwinList = QGuiApplication.topLevelWindows()
+    #print("window count", len(qwinList))
+    #print(qwinList[0])
+    if len(qwinList)==1:
+      result = qwinList[0]
+    else:
+      print("Fail to find single QWindow for app.")
+      result = None
+    return result
+    
+    
     
   def onStatusChanged(self, status):
+    " Handler for signal from QQuickView. "
     print("status changed", status)
+    # TODO look for errors
     

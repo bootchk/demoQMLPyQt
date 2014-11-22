@@ -31,6 +31,8 @@ class WidgetApp(object):
     mainWindow.setGeometry(100, 100, 500, 400)
     mainWindow.show()
     
+    mainQWindow = qmlMaster.appQWindow()
+    
     " mainWindow has layout has widget has quickview"
     layout = QVBoxLayout()
     
@@ -38,21 +40,23 @@ class WidgetApp(object):
     Embed QML to main window.
     Typically a toolbar or dialog
     '''
-    layout.addWidget(qmlMaster.widgetForQML(qmlFilename=embeddedQml))
+    widget = qmlMaster.widgetForQML(qmlFilename=embeddedQml, parentWindow=mainWindow)
+    layout.addWidget(widget)
     
     '''
-    ??? No need for this.  Has strange effects.
+    No need to show() the quickview or the container QWidget.  Has strange effects.
     '''
-    #quickThingContainer.show()
-    #quickThing.show()
     
     if secondEmbeddedQml is not None:
       '''
       Create QQuickView to pass to GV.
       Typically contains menu or dialog that GV will present on certain events
       (keypress for dialog, mouseclick for menu.)
+      
+      Note here quickview is NOT contained.  Experimental.
       '''
-      myView = qmlMaster.quickViewForQML(qmlFilename=secondEmbeddedQml)
+      myView = qmlMaster.quickViewForQML(qmlFilename=secondEmbeddedQml, transientParent=mainQWindow)
+      # container = QWidget.createWindowContainer(myView)
     else:
       myView = None
       

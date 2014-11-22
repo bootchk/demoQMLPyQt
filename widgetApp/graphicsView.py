@@ -28,13 +28,14 @@ class MyGraphicsView(QGraphicsView):
     '''
     if pickerView is not None:
       self.pickerView = pickerView
-      #self.dialogView = dialogView
       
-      #self.pickDelegate = self.findPickDelegate()
-      self.pickDelegate = self.qmlMaster.findComponent(self.pickerView, className=model.person.Person, objectName="person")
+      self.pickDelegate = self.qmlMaster.findComponent(self.pickerView, 
+                                                       className=model.person.Person, 
+                                                       objectName="person")
       
-      #self.dialogDelegate = self.qmlMaster.findComponent(self.dialogView, className=model.qmlDelegate.QmlDelegate, objectName="dialogDelegate")
-      self.dialogDelegate = self.qmlMaster.findComponent(self.pickerView, className=model.qmlDelegate.QmlDelegate, objectName="dialogDelegate")
+      self.dialogDelegate = self.qmlMaster.findComponent(self.pickerView, 
+                                                         className=model.qmlDelegate.QmlDelegate, 
+                                                         objectName="dialogDelegate")
     else:
       self.pickDelegate = None
       self.dialogDelegate = None
@@ -59,18 +60,6 @@ class MyGraphicsView(QGraphicsView):
     if self.dialogDelegate is not None:
       self.dialogDelegate.activate()
     
-    
-  def findPickDelegate(self):
-    '''
-    Find the model component of self's view.
-    The model is a delegate.  When it's activate() method is called, it delegates
-    to a QML control (menu or other dialog.) (view<-, i.e. show a GUI)
-    ??? or emits a signal connected to business logic (control->)
-    ??? Why can't we just call the method on the QML control.
-    '''
-    result = self.qmlMaster.findComponent(self.pickerView, className=model.person.Person, objectName="person")
-    assert result is not None
-    return result
     
   
     
