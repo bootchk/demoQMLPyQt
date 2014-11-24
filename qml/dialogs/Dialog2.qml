@@ -37,7 +37,15 @@ Dialog {
 				property QtObject model: Person{}
 				
 				// Usual signal on SpinBox.value property changed.
-				onValueChanged: print("SpinBox.value changed")
+				onValueChanged: {
+					print("SpinBox.value changed")
+					/*
+					Futz with object owned by business logic and exposed to this QML via contextObject
+					Its another instance of Person, name is applicationData.
+					This is reverse of above instance of Person which is owned by the QML and exposed to the business logic.
+					*/
+					applicationData.activate()
+					}
 				
 				// special signal on SpinBox lose focus
 				onEditingFinished: {

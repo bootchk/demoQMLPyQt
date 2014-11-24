@@ -13,6 +13,8 @@ from widgetApp.graphicsView import MyGraphicsView
 from qmlApp.qmlModel import QmlModel
 from qmlMaster.qmlMaster import QmlMaster
 
+from model.person import Person
+
 
 class WidgetApp(object):
   def __init__(self, embeddedQml, secondEmbeddedQml=None):
@@ -57,6 +59,12 @@ class WidgetApp(object):
       '''
       myView = qmlMaster.quickViewForQML(qmlFilename=secondEmbeddedQml, transientParent=mainQWindow)
       # container = QWidget.createWindowContainer(myView)
+      '''
+      Expose our model to QML.
+      This instance of Person is owned here, but visible in QML.
+      '''
+      data = Person()
+      myView.rootContext().setContextProperty("applicationData", data)
     else:
       myView = None
       
