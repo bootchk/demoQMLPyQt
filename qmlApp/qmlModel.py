@@ -4,6 +4,7 @@ from PyQt5.QtQml import qmlRegisterType
 
 from model.person import Person
 from model.qmlDelegate import QmlDelegate
+from model.clan import Clan
 
 class QmlModel(object):
   '''
@@ -29,3 +30,4 @@ class QmlModel(object):
     '''
     qmlRegisterType(Person, 'People', 1, 0, 'Person')
     qmlRegisterType(QmlDelegate, 'QmlDelegate', 1, 0, 'DialogDelegate')
+    qmlRegisterType(Clan, 'Clan', 1, 0, 'Clan')

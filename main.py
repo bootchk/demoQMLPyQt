@@ -40,7 +40,8 @@ Uncomment one to test.
 #app = QmlApp(qml="qml/testSignals.qml")
 " Test signal from Python to QML"
 #app = QmlApp(qml="qml/testSignalsUp.qml")
-
+" Test model with nested properties accessible in QML"
+app = QmlApp(qml="qml/testNestedProperties.qml")
 
 
 '''
@@ -73,7 +74,7 @@ QWidget app embedding QML
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWControls.qml")
 
 # Dialog with calendar
-app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWCalendar.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWCalendar.qml")
 
 
 

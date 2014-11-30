@@ -17,7 +17,7 @@ class Person(QObject):
         super().__init__(parent)
 
         # Initialise the value of the properties.
-        self._name = ''
+        self._name = 'BillyDefault'
         self._shoeSize = 0
 
     # Define the getter of the 'name' property.  The C++ type of the
