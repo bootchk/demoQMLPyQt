@@ -41,7 +41,9 @@ Uncomment one to test.
 " Test signal from Python to QML"
 #app = QmlApp(qml="qml/testSignalsUp.qml")
 " Test model with nested properties accessible in QML"
-app = QmlApp(qml="qml/testNestedProperties.qml")
+#app = QmlApp(qml="qml/testNestedProperties.qml")
+" Test model returning a type via a method"
+app = QmlApp(qml="qml/testModelSlot.qml")
 
 
 '''
