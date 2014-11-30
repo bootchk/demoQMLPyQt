@@ -1,5 +1,5 @@
 /*
-Dialog containing row of controls
+Dialog containing calendar
 */
 
 import QtQuick 2.3
@@ -13,14 +13,13 @@ import QmlDelegate 1.0
 
 Item {
 
-	
 	DialogDelegate {
 		id: dialogDelegate
 		objectName: "dialogDelegate"
 	}
 	
 	
-	MyDialogs.Dialog2 {
+	MyDialogs.DialogWCalendar {
 		id: dialog
 	}
 

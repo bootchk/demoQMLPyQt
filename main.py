@@ -70,7 +70,10 @@ QWidget app embedding QML
 #"qml/dialogs/dialog.qml"
 
 # Dialog with controls.  Slider owning model
-app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWControls.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWControls.qml")
+
+# Dialog with calendar
+app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWCalendar.qml")
 
 
 
