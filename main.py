@@ -34,6 +34,7 @@ Uncomment one to test.
 #app = QmlApp(qml="qml/testViews.qml")
 #app = QmlApp(qml="qml/testBars.qml")
 #app = QmlApp(qml="qml/testMenu.qml")
+app = QmlApp(qml="qml/testComboBox.qml")
 
 
 " Test signals from QML to Python slot"
@@ -43,7 +44,7 @@ Uncomment one to test.
 " Test model with nested properties accessible in QML"
 #app = QmlApp(qml="qml/testNestedProperties.qml")
 " Test model returning a type via a method"
-app = QmlApp(qml="qml/testModelSlot.qml")
+#app = QmlApp(qml="qml/testModelSlot.qml")
 
 
 '''
