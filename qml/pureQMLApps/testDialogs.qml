@@ -1,9 +1,12 @@
-// QML dialogs
+// Test Quick Dialogs
+// See QTBUG 41844
+// Also test a custom dialog implementation
 
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 
+import "../dialogs" as MyDialogs
 
 ApplicationWindow {
     visible: true
@@ -31,6 +34,16 @@ ApplicationWindow {
     MessageDialog {
         id: messageDialog
         text: "Message"
+    }
+    
+    Dialog {
+		id: plainDialog
+		title: "Plain dialog"
+	}
+    
+    // Not a QML Dialog but a QML Window configured as a dialog.
+    MyDialogs.WindowAsDialog{
+    	id: customDialog
     }
     
 
@@ -63,15 +76,31 @@ ApplicationWindow {
         onTriggered: messageDialog.open()
         tooltip: "Message"
     }
+    
+    Action {
+            id: plainAction
+            text: "&Plain Dialog"
+            onTriggered: plainDialog.open()
+            tooltip: "Plain"
+        }
+    
+    Action {
+                id: customAction
+                text: "&Custom Dialog"
+                onTriggered: customDialog.open()
+                tooltip: "Custom"
+            }
 
 
     menuBar: MenuBar {
         Menu {
-            title: "&Choosers"
+            title: "&Test dialog"
             MenuItem { action: fileAction }
             MenuItem { action: colorAction }
             MenuItem { action: fontAction }
             MenuItem { action: messageAction }
+            MenuItem { action: plainAction }
+            MenuItem { action: customAction }
         }
     }
 }

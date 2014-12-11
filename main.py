@@ -12,6 +12,8 @@ from widgetApp.widgetApp import WidgetApp
 
 
 '''
+Pure QML apps (invokes QmlApp)
+
 Create and init app enters event loop, doesn't return
 '''
 '''
@@ -29,22 +31,22 @@ Cruft
 These seem to work.
 Uncomment one to test.
 '''
-#app = QmlApp(qml="qml/helloWorld.qml")
-#app = QmlApp(qml="qml/testDialogs.qml")
-#app = QmlApp(qml="qml/testViews.qml")
-#app = QmlApp(qml="qml/testBars.qml")
-#app = QmlApp(qml="qml/testMenu.qml")
-app = QmlApp(qml="qml/testComboBox.qml")
+#app = QmlApp(qml="qml/pureQMLApps/helloWorld.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testViews.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testBars.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testComboBox.qml")
 
 
 " Test signals from QML to Python slot"
-#app = QmlApp(qml="qml/testSignals.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testSignals.qml")
 " Test signal from Python to QML"
-#app = QmlApp(qml="qml/testSignalsUp.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testSignalsUp.qml")
 " Test model with nested properties accessible in QML"
-#app = QmlApp(qml="qml/testNestedProperties.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testNestedProperties.qml")
 " Test model returning a type via a method"
-#app = QmlApp(qml="qml/testModelSlot.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testModelSlot.qml")
 
 
 '''
@@ -69,17 +71,18 @@ QWidget app embedding QML
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml")
 
 # Toolbar, context menu, and dialog
-#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/MenuAndDialog.qml")
-#"qml/PickMenu.qml"
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/MenuAndDialog.qml")
+#"qml/embeddedQML/PickMenu.qml"
 #"qml/dialogs/dialog.qml"
 
 # Dialog with controls.  Slider owning model
-#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWControls.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWControls.qml")
 
 # Dialog with calendar
-#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/DialogWCalendar.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWCalendar.qml")
 
-
+# Dialog implemented using Window with Qt.Dialog flag
+app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/WindowAsDialog.qml")
 
 
 # Test toolbar and popupmenu 
@@ -87,7 +90,7 @@ QWidget app embedding QML
 
 
 # Not work? QmlApp requires a QWindow, which this does not have
-#app = QmlApp(qml="qml/helloWorldRedRect.qml")
+#app = QmlApp(qml="qml/pureQMLApps/helloWorldRedRect.qml")
 
 
   
