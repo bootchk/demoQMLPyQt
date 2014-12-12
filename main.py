@@ -34,10 +34,10 @@ These seem to work.
 Uncomment one to test.
 '''
 #app = QmlApp(qml="qml/pureQMLApps/helloWorld.qml")
-app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testViews.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testBars.qml")
-#app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
+app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testComboBox.qml")
 
 

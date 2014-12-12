@@ -103,4 +103,8 @@ ApplicationWindow {
             MenuItem { action: customAction }
         }
     }
+    
+    Label {
+    	text: "Expect menubar having 'Test dialog' item"
+    }
 }

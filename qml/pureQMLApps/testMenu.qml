@@ -8,10 +8,10 @@ Test menu, pure QML, inside
 
 */
 
-import QtQuick 2.2
+import QtQuick 2.3
 import QtQuick.Controls 1.2
 
-import "menus" as MyMenu
+import "../menus" as MyMenu
 
 ApplicationWindow {
     visible: true
@@ -37,6 +37,6 @@ ApplicationWindow {
     }
 	
 	Text {
-		text: "RMB to popup menu"
+		text: "RMB to popup menu under cursor"
 	}
 }
