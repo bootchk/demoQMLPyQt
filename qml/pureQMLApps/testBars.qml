@@ -1,6 +1,6 @@
 // QML bars
 
-import QtQuick 2.2
+import QtQuick 2.3
 import QtQuick.Controls 1.2
 
 // Need layouts for toolbar
@@ -24,6 +24,7 @@ ApplicationWindow {
         text: "&File"
         shortcut: StandardKey.Open
         tooltip: "Choose file"
+        onTriggered: console.log("triggered")
     }
     
 

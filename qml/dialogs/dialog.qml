@@ -2,10 +2,10 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 
-import QmlDelegate 1.0
+import QmlDelegate 1.0	// DialogDelegate
 
 /*
-Ordinary dialog with content.
+Ordinary dialog with simple content.
 */
 Item {
 

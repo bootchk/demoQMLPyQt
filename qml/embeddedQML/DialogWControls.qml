@@ -1,12 +1,12 @@
 /*
-Dialog containing row of controls
+Dialog containing controls
 */
 
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 
-import "dialogs" as MyDialogs
+import "../dialogs" as MyDialogs
 
 import QmlDelegate 1.0
 
@@ -20,7 +20,7 @@ Item {
 	}
 	
 	
-	MyDialogs.Dialog2 {
+	MyDialogs.DialogWSpinBox {
 		id: dialog
 	}
 

@@ -16,7 +16,7 @@ class MyGraphicsView(QGraphicsView):
   
   def __init__(self, pickerView):
     scene = QGraphicsScene()
-    scene.addText("QGraphicsItem to be mock picked.")
+    scene.addText("QGraphicsItem in QGraphicsView.  Press mouse to mock pick, key to open dialog.")
     QGraphicsView.__init__(self, scene)
     self.qmlMaster = QmlMaster()
     
@@ -49,7 +49,7 @@ class MyGraphicsView(QGraphicsView):
     '''
     if self.pickDelegate is not None:
       self.pickDelegate.activate()  # cause signal to be emitted to QML
-    print("pressed")
+    print("Mouse pressed")
     
     
   def keyPressEvent(self, event):

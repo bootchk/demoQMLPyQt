@@ -34,10 +34,13 @@ These seem to work.
 Uncomment one to test.
 '''
 #app = QmlApp(qml="qml/pureQMLApps/helloWorld.qml")
+'''
+Not working OSX in Python in terminal because app menubar hidden?
+'''
 #app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testViews.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testBars.qml")
-app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
+#app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testComboBox.qml")
 
 
@@ -78,7 +81,7 @@ QWidget app embedding QML
 #"qml/dialogs/dialog.qml"
 
 # Dialog with controls.  Slider owning model
-#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWControls.qml")
+app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWControls.qml")
 
 # Dialog with calendar
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWCalendar.qml")

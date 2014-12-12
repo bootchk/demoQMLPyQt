@@ -5,6 +5,8 @@ import QtQuick.Dialogs 1.2
 import "../controls" as MyControls
 
 
+// Dialog having a spinbox
+
 Dialog {
 	id: dialog
 	
@@ -15,12 +17,6 @@ Dialog {
 	title: "My dialog"
 	standardButtons: StandardButton.Ok | StandardButton.Cancel
 	
-	Calendar {
-		id: calendar
-		onDoubleClicked: dateDialog.click(StandardButton.Save)
-	}
-	
-	
 	Column {
 		anchors.fill: parent
 		anchors.margins: 10
@@ -28,7 +24,12 @@ Dialog {
 		MyControls.LabeledSpinBoxWButton {
 			id: rowControl
 		}
+		
+		/*Calendar {
+			id: calendar
+			onDoubleClicked: dateDialog.click(StandardButton.Save)
+		}
+		*/
 	}
-	
 	// a contentItem will not have buttons
 }
