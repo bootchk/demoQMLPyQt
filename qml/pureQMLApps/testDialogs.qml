@@ -2,7 +2,7 @@
 // See QTBUG 41844
 // Also test a custom dialog implementation
 
-import QtQuick 2.2
+import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 
@@ -91,7 +91,7 @@ ApplicationWindow {
                 tooltip: "Custom"
             }
 
-
+    // !!! Must assign to the property 'menubar'
     menuBar: MenuBar {
         Menu {
             title: "&Test dialog"

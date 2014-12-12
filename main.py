@@ -1,3 +1,5 @@
+#! /usr/local/bin/python3
+
 '''
 Drawn from examples:
 - PyQt 5.3.2 Reference Quide "Integrating Python and QML"
@@ -32,7 +34,7 @@ These seem to work.
 Uncomment one to test.
 '''
 #app = QmlApp(qml="qml/pureQMLApps/helloWorld.qml")
-#app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
+app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testViews.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testBars.qml")
 #app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
@@ -82,7 +84,7 @@ QWidget app embedding QML
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWCalendar.qml")
 
 # Dialog implemented using Window with Qt.Dialog flag
-app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/WindowAsDialog.qml")
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/WindowAsDialog.qml")
 
 
 # Test toolbar and popupmenu 
