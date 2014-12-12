@@ -33,7 +33,10 @@ class QmlDelegate(QObject):
     @Slot()
     def activate(self):
       '''
-      Handle activated signal.
+      Slot called from:
+      - business side (business knows dialog is needed)
+      - OR QML (business has opened widget e.g. menu which chains to a dialog.)
+      In turn, emit signal to be handled in QML.
       
       Note connections (for instances) can be made from QML or from Python?
       '''
@@ -41,4 +44,4 @@ class QmlDelegate(QObject):
       print("Emitting activated")
       self.activated.emit()
       
-      
+    

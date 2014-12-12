@@ -54,6 +54,7 @@ Not working OSX in Python in terminal because app menubar hidden?
 #app = QmlApp(qml="qml/pureQMLApps/testModelSlot.qml")
 
 
+
 '''
 QWidget app embedding QML
 '''
@@ -75,13 +76,15 @@ QWidget app embedding QML
 # Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml")
 
+" Test round trip to modal context menu "
 # Toolbar, context menu, and dialog
-#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/MenuAndDialog.qml")
+app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/MenuAndDialog.qml")
 #"qml/embeddedQML/PickMenu.qml"
 #"qml/dialogs/dialog.qml"
 
 # Dialog with controls.  Slider owning model
-app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWControls.qml")
+# Works Linux, OSX
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWControls.qml")
 
 # Dialog with calendar
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWCalendar.qml")

@@ -2,14 +2,17 @@
 A context menu for person.
 
 Opens on receiving signal personChanged.
+
+Menu item of context menu in turn calls dialogDelegate to show another dialog.
+This sequence did not work on OSX??
 */
 
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 
-import "menus" as MyMenu
-import "dialogs" as MyDialogs
+import "../menus" as MyMenu
+import "../dialogs" as MyDialogs
 
 import People 1.0
 import QmlDelegate 1.0
@@ -33,7 +36,7 @@ Item {
 	}
 	
 	
-	MyMenu.Menu {
+	MyMenu.MenuCallingDialog {
 		id: menu
 	}
 	
