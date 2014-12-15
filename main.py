@@ -82,6 +82,9 @@ app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embed
 #"qml/embeddedQML/PickMenu.qml"
 #"qml/dialogs/dialog.qml"
 
+# Menu with delegate.  Doesn't work unless Menu embedded in Item
+#app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/MenuWDelegate.qml")
+
 # Dialog with controls.  Slider owning model
 # Works Linux, OSX
 #app = WidgetApp(embeddedQml="qml/bars/toolBar.qml", secondEmbeddedQml="qml/embeddedQML/DialogWControls.qml")
