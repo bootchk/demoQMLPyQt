@@ -9,8 +9,8 @@ Drawn from examples:
 -- "Interacting with QML Objects from C++"
 '''
 
-from qmlApp.qmlApp import QmlApp
-from widgetApp.widgetApp import WidgetApp
+from demoPyQtQML.qmlApp.qmlApp import QmlApp
+from demoPyQtQML.widgetApp.widgetApp import WidgetApp
 
 
 '''

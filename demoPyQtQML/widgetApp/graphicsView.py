@@ -3,9 +3,9 @@ from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene
 
 
 
-from qmlMaster.qmlMaster import QmlMaster
+from demoPyQtQML.qmlMaster.qmlMaster import QmlMaster
 #from model.person import Person
-import model
+import demoPyQtQML.model as model
 
 
 class MyGraphicsView(QGraphicsView):

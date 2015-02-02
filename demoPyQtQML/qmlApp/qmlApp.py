@@ -6,10 +6,10 @@ from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickItem, QQuickWindow
 from PyQt5.QtQml import QQmlApplicationEngine
 
-from qmlApp.qmlModel import QmlModel
-from model.person import Person
+from demoPyQtQML.qmlApp.qmlModel import QmlModel
+from demoPyQtQML.model.person import Person
 
-from qmlMaster.qmlMaster import QmlMaster
+from demoPyQtQML.qmlMaster.qmlMaster import QmlMaster
 
 
 

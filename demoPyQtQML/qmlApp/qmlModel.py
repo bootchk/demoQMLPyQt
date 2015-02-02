@@ -2,10 +2,10 @@
 from PyQt5.QtQml import qmlRegisterType
 # qmlRegisterSingletonType #, QQmlComponent, QQmlEngine
 
-from model.person import Person
-from model.qmlDelegate import QmlDelegate
-from model.clan import Clan
-from model.slottedModel import SlottedModel
+from demoPyQtQML.model.person import Person
+from demoPyQtQML.model.qmlDelegate import QmlDelegate
+from demoPyQtQML.model.clan import Clan
+from demoPyQtQML.model.slottedModel import SlottedModel
 
 class QmlModel(object):
   '''

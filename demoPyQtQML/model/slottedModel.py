@@ -1,7 +1,7 @@
 
 from PyQt5.QtCore import QObject, pyqtSlot
 
-from model.person import Person
+from demoPyQtQML.model.person import Person
 
 '''
 A type that will be registered with QML.  

@@ -8,12 +8,12 @@ from PyQt5.QtWidgets import QApplication, QVBoxLayout
 #from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QWidget
 
-from widgetApp.graphicsView import MyGraphicsView
+from demoPyQtQML.widgetApp.graphicsView import MyGraphicsView
 
-from qmlApp.qmlModel import QmlModel
-from qmlMaster.qmlMaster import QmlMaster
+from demoPyQtQML.qmlApp.qmlModel import QmlModel
+from demoPyQtQML.qmlMaster.qmlMaster import QmlMaster
 
-from model.person import Person
+from demoPyQtQML.model.person import Person
 
 
 class WidgetApp(object):
