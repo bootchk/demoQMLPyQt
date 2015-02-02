@@ -1,4 +1,5 @@
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene
 
 
@@ -18,6 +19,12 @@ class MyGraphicsView(QGraphicsView):
     scene = QGraphicsScene()
     scene.addText("QGraphicsItem in QGraphicsView.  Press mouse to mock pick, key to open dialog.")
     QGraphicsView.__init__(self, scene)
+    
+    # Accept touch on both this widget and viewport (abstract scroll area)
+    # Touch engenders LMB mouse press event since app attribute for that is set.
+    self.setAttribute(Qt.WA_AcceptTouchEvents)
+    self.viewport().setAttribute(Qt.WA_AcceptTouchEvents)
+    
     self.qmlMaster = QmlMaster()
     
     '''
@@ -41,6 +48,9 @@ class MyGraphicsView(QGraphicsView):
       self.dialogDelegate = None
     #self.findQMLControl()
 
+    
+  def touchEvent(self, event):
+    print("Touch event")
     
     
   def mousePressEvent(self, event):
