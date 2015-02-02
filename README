@@ -23,6 +23,11 @@ Especially the code for finding .qml file in resources directory.
 In anticipation of testing pyqtdeployed apps (where frozen code AND resources are compiled into one embedded .qrc file system.)
 
 
+Compatibility with pyqtdeploy and mobile platforms
+--------------------------------------------------
+In progress: testing pyqtdeploy'ed on mobile platforms (iOS and Android) using touch
+
+
 TODO
 ----
 - test iOS and Android for style conformance

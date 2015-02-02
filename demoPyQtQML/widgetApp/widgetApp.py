@@ -3,7 +3,7 @@ App whose outer is QWidget, having embedded QML
 '''
 import sys
 
-
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QVBoxLayout
 #from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QWidget
@@ -21,6 +21,9 @@ class WidgetApp(QApplication):
   def __init__(self, embeddedQml, secondEmbeddedQml=None):
     super().__init__(sys.argv)
     
+    print("On mobile platform, synthesizing LMB mouse events from touch.")
+    self.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTouchEvents, on=True)
+      
     '''
     Register our Python model (classes/types to be registered with QML.)
     '''

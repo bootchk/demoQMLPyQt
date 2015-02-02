@@ -6,6 +6,6 @@
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 3.0</pydev_property>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">python3</pydev_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
-<path>/usr/lib/python3.4/site-packages</path>
+<path>/usr/local/lib/python3.4/site-packages</path>
 </pydev_pathproperty>
 </pydev_project>
