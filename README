@@ -14,10 +14,23 @@ This project has several qml files that demo:
 - signals between QML and Python (back and forth)
 - architectures: nesting QML inside a QWidget (but reverse is not possible in Qt Quick 2 in Qt 5 ? but is Qt Quick 1 still in Qt 5?
 
-TODO:
+
+Dependency
+----------
+Now this project depends on my other github project qtEmbeddedQmlFramework.
+In other words, I moved some of the boilerplate code from this project to qtEmbeddedQmlFramework.
+Especially the code for finding .qml file in resources directory.
+In anticipation of testing pyqtdeployed apps (where frozen code AND resources are compiled into one embedded .qrc file system.)
+
+
+TODO
+----
 - test iOS and Android for style conformance
 - test whether QML dialogs nested in QWidget are full screen on mobile platforms
 - Use pyrcc to put the qml in resources
 - pyqtdeploy it
 
-Quality: much cruft from failed experiments.  Probably fragile.  Not necessarily architecturally correct.
+
+Status
+------
+much cruft from failed experiments.  Probably fragile.  Not necessarily architecturally correct.

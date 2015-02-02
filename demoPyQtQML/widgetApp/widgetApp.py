@@ -16,9 +16,10 @@ from demoPyQtQML.qmlMaster.qmlMaster import QmlMaster
 from demoPyQtQML.model.person import Person
 
 
-class WidgetApp(object):
+class WidgetApp(QApplication):
+  
   def __init__(self, embeddedQml, secondEmbeddedQml=None):
-    app = QApplication(sys.argv)
+    super().__init__(sys.argv)
     
     '''
     Register our Python model (classes/types to be registered with QML.)
@@ -30,6 +31,7 @@ class WidgetApp(object):
     
     " simple widget, not QMainWindow"
     mainWindow = QWidget()
+    self.mainWindow = mainWindow  # keep reference
     mainWindow.setGeometry(100, 100, 500, 400)
     mainWindow.show()
     
@@ -76,8 +78,7 @@ class WidgetApp(object):
 
     " Connections are defined inside the QML"
 
-    # Qt Main loop
-    sys.exit(app.exec_())
+    
 
 
   

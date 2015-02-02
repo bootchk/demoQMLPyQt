@@ -14,7 +14,7 @@ from demoPyQtQML.qmlMaster.qmlMaster import QmlMaster
 
 
 
-class QmlApp(object):
+class QmlApp(QGuiApplication):
   '''
   Contains QApp without reference to a QWidget.
   I.E. all windows defined in qml file.
@@ -23,7 +23,7 @@ class QmlApp(object):
   Has event loop (never returns)
   '''
   def __init__(self, qml):
-    app = QGuiApplication(sys.argv)
+    super().__init__(sys.argv)
     
     '''
     Register our Python models (classes/types to be registered with QML.)
@@ -40,7 +40,7 @@ class QmlApp(object):
     engine.warnings.connect(self.errors)
     '''
     engine.load(self.qmlMaster.qmlFilenameToQUrl(qml))
-    engine.quit.connect(app.quit)
+    engine.quit.connect(self.quit)
     
     " Keep reference to engine, used by root() "
     self.engine = engine
@@ -58,9 +58,6 @@ class QmlApp(object):
     but only the UI layer knows what connections to make
     '''
     self.makeConnections()
-    
-    app.exec_()   # !!! C exec => Python exec_
-    print("Application returned")
 
     
     

@@ -6,11 +6,14 @@ Hides details but also more robust than Qt methods.
 Note findChild was broken until recently, see PyQt mail list report.
 result = qmlRoot.findChild(model.person.Person, "person")
 '''
-from PyQt5.QtCore import qWarning, QObject, QUrl
+from PyQt5.QtCore import qWarning, QObject
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtQuick import QQuickItem, QQuickView
 from PyQt5.QtQml import QQmlProperty
+
+from qtEmbeddedQmlFramework.resourceManager import resourceMgr
+
 
 
 class QmlMaster(object):
@@ -90,13 +93,17 @@ class QmlMaster(object):
       #if isinstance(item, model.person.Person):
       #  print("Is Person")
     
+  """
+  Deprecated: qtEmbeddedQmlFramework has more nuanced getting of QUrl
+  This doesn't work for embedded resources.
+  
   def qmlFilenameToQUrl(self, qml):
     qmlUrl=QUrl(qml)
     assert qmlUrl.isValid()
     #print(qmlUrl.path())
     #assert qmlUrl.isLocalFile()
     return qmlUrl
-    
+  """
     
   def quickViewForQML(self, qmlFilename, transientParent=None):
     '''
@@ -106,7 +113,8 @@ class QmlMaster(object):
     
     quickView = QQuickView()
     quickView.statusChanged.connect(self.onStatusChanged)
-    qurl = self.qmlFilenameToQUrl(qmlFilename)
+    
+    qurl = resourceMgr.urlToQMLResource(resourceSubpath=qmlFilename)
     quickView.setSource(qurl)
     '''
     Show() the enclosing QWindow?
