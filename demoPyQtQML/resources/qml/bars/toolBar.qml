@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 
 // Syntax error if Actions defined ahead of this?
 
+// A simple toolbar with one checkbox
 
 ToolBar {
         id: toolbar

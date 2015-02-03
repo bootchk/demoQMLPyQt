@@ -127,13 +127,13 @@ class QmlMaster(object):
     return quickView
   
   
-  def widgetAndQuickViewForQML(self, qmlFilename, transientParent=None):
+  def widgetAndQuickViewForQML(self, qmlFilename, parentWindow):
     '''
     widget containing quickview, and quickview itself.
     See QTBUG-32934, you can't find the QWindow from the container QWidget, you must remember it.
     '''
-    quickview = self.quickViewForQML(qmlFilename, transientParent)
-    widget = QWidget.createWindowContainer(quickview)
+    quickview = self.quickViewForQML(qmlFilename)
+    widget = self.widgetForQuickView(quickview, parentWindow)
     return widget, quickview
   
   

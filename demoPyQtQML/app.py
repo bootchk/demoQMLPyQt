@@ -10,8 +10,8 @@ def createApp():
   Create a demo app.
   Uncomment one.
   '''
-  result = createPureQMLApp()
-  #result = createEmbeddedQMLApp()
+  #result = createPureQMLApp()
+  result = createEmbeddedQMLApp()
   return result
   
   
@@ -38,9 +38,9 @@ def createPureQMLApp():
   '''
   Not working OSX in Python in terminal because app menubar hidden?
   '''
-  app = QmlApp(qml="pureQMLApps/testDialogs.qml")
+  #app = QmlApp(qml="pureQMLApps/testDialogs.qml")
   #app = QmlApp(qml="pureQMLApps/testViews.qml")
-  #app = QmlApp(qml="pureQMLApps/testBars.qml")
+  app = QmlApp(qml="pureQMLApps/testBars.qml")
   #app = QmlApp(qml="pureQMLApps/testMenu.qml")
   #app = QmlApp(qml="pureQMLApps/testComboBox.qml")
   
@@ -61,7 +61,10 @@ def createEmbeddedQMLApp():
   QWidget app embedding QML
   '''
   
-  # menuBar does NOT seem to work
+  '''
+  menuBar does NOT seem to work?
+  QWidget layout is not handling it properly so it is obscured by it's sibling QGV?
+  '''
   #app = WidgetApp(embeddedQml="bars/menuBar.qml")
   
   # This doesn't work: 'QQuickView only supports loading of root objects that derive from QQuickItem.'
@@ -78,9 +81,15 @@ def createEmbeddedQMLApp():
   # Toolbar works.  toolbar are NOT exclusive to ApplicationWindow?
   #app = WidgetApp(embeddedQml="bars/toolBar.qml")
   
-  " Test round trip to modal context menu "
+  # Toolbar having button opening a dialog
+  app = WidgetApp(embeddedQml="bars/toolBarWButton.qml", secondEmbeddedQml="embeddedQML/MenuAndDialog.qml")
+  
+  '''
+  Test round trip to modal context menu:
+  mouse press in QGV invokes QML context menu which invokes QML dialog
+  '''
   # Toolbar, context menu, and dialog
-  app = WidgetApp(embeddedQml="bars/toolBar.qml", secondEmbeddedQml="embeddedQML/MenuAndDialog.qml")
+  #app = WidgetApp(embeddedQml="bars/toolBar.qml", secondEmbeddedQml="embeddedQML/MenuAndDialog.qml")
   #"embeddedQML/PickMenu.qml"
   #"dialogs/dialog.qml"
   
@@ -98,9 +107,11 @@ def createEmbeddedQMLApp():
   #app = WidgetApp(embeddedQml="bars/toolBar.qml", secondEmbeddedQml="embeddedQML/WindowAsDialog.qml")
   
   
-  # Test toolbar and popupmenu 
+  # Test toolbar
   #app = WidgetApp(embeddedQml="bars/toolBar.qml")
   
+  # Menubar invoking dialogs
+  #app = WidgetApp(embeddedQml="bars/menuBar.qml", secondEmbeddedQml="embeddedQML/DialogWControls.qml")
   
   # Not work? QmlApp requires a QWindow, which this does not have
   #app = QmlApp(qml="pureQMLApps/helloWorldRedRect.qml")

@@ -11,7 +11,7 @@ import QtQuick.Controls 1.2
 
 import QmlDelegate 1.0
 
-
+Item {
 Menu {
 	
 	Instantiator {
@@ -25,4 +25,5 @@ Menu {
 	MenuItem {
 		text: "foo"
 	}
+}
 }
