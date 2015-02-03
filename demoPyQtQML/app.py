@@ -10,8 +10,8 @@ def createApp():
   Create a demo app.
   Uncomment one.
   '''
-  #result = createPureQMLApp()
-  result = createEmbeddedQMLApp()
+  result = createPureQMLApp()
+  #result = createEmbeddedQMLApp()
   return result
   
   
@@ -38,21 +38,21 @@ def createPureQMLApp():
   '''
   Not working OSX in Python in terminal because app menubar hidden?
   '''
-  #app = QmlApp(qml="qml/pureQMLApps/testDialogs.qml")
-  #app = QmlApp(qml="qml/pureQMLApps/testViews.qml")
-  #app = QmlApp(qml="qml/pureQMLApps/testBars.qml")
-  #app = QmlApp(qml="qml/pureQMLApps/testMenu.qml")
-  #app = QmlApp(qml="qml/pureQMLApps/testComboBox.qml")
+  app = QmlApp(qml="pureQMLApps/testDialogs.qml")
+  #app = QmlApp(qml="pureQMLApps/testViews.qml")
+  #app = QmlApp(qml="pureQMLApps/testBars.qml")
+  #app = QmlApp(qml="pureQMLApps/testMenu.qml")
+  #app = QmlApp(qml="pureQMLApps/testComboBox.qml")
   
   
   " Test signals from QML to Python slot"
-  #app = QmlApp(qml="qml/pureQMLApps/testSignals.qml")
+  #app = QmlApp(qml="pureQMLApps/testSignals.qml")
   " Test signal from Python to QML"
-  #app = QmlApp(qml="qml/pureQMLApps/testSignalsUp.qml")
+  #app = QmlApp(qml="pureQMLApps/testSignalsUp.qml")
   " Test model with nested properties accessible in QML"
-  #app = QmlApp(qml="qml/pureQMLApps/testNestedProperties.qml")
+  #app = QmlApp(qml="pureQMLApps/testNestedProperties.qml")
   " Test model returning a type via a method"
-  app = QmlApp(qml="qml/pureQMLApps/testModelSlot.qml")
+  #app = QmlApp(qml="pureQMLApps/testModelSlot.qml")
   return app
   
   

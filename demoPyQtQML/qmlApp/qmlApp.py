@@ -6,6 +6,8 @@ from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickItem, QQuickWindow
 from PyQt5.QtQml import QQmlApplicationEngine
 
+from qtEmbeddedQmlFramework.resourceManager import resourceMgr
+
 from demoPyQtQML.qmlApp.qmlModel import QmlModel
 from demoPyQtQML.model.person import Person
 
@@ -39,7 +41,7 @@ class QmlApp(QGuiApplication):
     OW, qWarnings to stdio.
     engine.warnings.connect(self.errors)
     '''
-    engine.load(self.qmlMaster.qmlFilenameToQUrl(qml))
+    engine.load(resourceMgr.urlToQMLResource(resourceSubpath=qml))
     engine.quit.connect(self.quit)
     
     " Keep reference to engine, used by root() "
