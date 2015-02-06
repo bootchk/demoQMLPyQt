@@ -50,7 +50,9 @@ class WidgetApp(QApplication):
     Typically a toolbar or dialog
     '''
     ##widget = qmlMaster.widgetForQML(qmlFilename=embeddedQml, parentWindow=mainWindow)
-    widget, quickview = qmlMaster.widgetAndQuickViewForQML(qmlFilename=embeddedQml, parentWindow=mainWindow)
+    ##widget, quickthing = qmlMaster.widgetAndQuickViewForQML(qmlFilename=embeddedQml, parentWindow=mainWindow)
+    widget, quickthing = qmlMaster.widgetForQMLUsingQQuickWidget(qmlFilename=embeddedQml, parentWindow=mainWindow)
+    
     "No need to show() the quickview or the container QWidget?  Has strange effects."
     widget.show()
     print("Height of widget embedding QML:", widget.height())
@@ -59,7 +61,7 @@ class WidgetApp(QApplication):
     layout.addWidget(widget)
     
     " first embeddedQml might have a delegate"
-    firstDelegate = qmlMaster.findComponent( quickview, 
+    firstDelegate = qmlMaster.findComponent( quickthing,
                                              className=QmlDelegate, 
                                              objectName="dialogDelegate")
     print("Delegate in first qml:", firstDelegate)

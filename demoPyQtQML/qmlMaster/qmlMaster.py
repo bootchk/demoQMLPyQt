@@ -11,6 +11,7 @@ from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtQuick import QQuickItem, QQuickView
 from PyQt5.QtQml import QQmlProperty
+from PyQt5.QtQuickWidgets import QQuickWidget
 
 from qtEmbeddedQmlFramework.resourceManager import resourceMgr
 
@@ -18,16 +19,19 @@ from qtEmbeddedQmlFramework.resourceManager import resourceMgr
 
 class QmlMaster(object):
   
-  def quickViewRoot(self, quickview):
+  def quickRoot(self, quickThing):
     '''
-    QQuickView is a QWindow having a tree of QML objects.
+    quickThing has a tree of QML objects.
     Root of the tree.
+    
+    quickThing is QQuickView is a QWindow
+    OR quickThing is a QQuickWidget
     '''
-    assert isinstance(quickview, QQuickView)
+    assert isinstance(quickThing, QQuickView) or isinstance(quickThing, QQuickWidget)
     try:
-      qmlRoot = quickview.rootObject()  # objects()[0]
+      qmlRoot = quickThing.rootObject()  # objects()[0]
     except:
-      qWarning("quickview empty: failed to read or parse qml?")
+      qWarning("quickThing empty: failed to read or parse qml?")
       raise
     
     #print(qmlRoot)
@@ -39,7 +43,7 @@ class QmlMaster(object):
       '''
       In quickview, find child with class className and objectName equal to objectName.
       '''
-      root = self.quickViewRoot(quickview)
+      root = self.quickRoot(quickview)
       return self.findComponentFromRoot(root, className, objectName)
   
   
@@ -125,16 +129,28 @@ class QmlMaster(object):
     if transientParent is not None:
       quickView.setTransientParent(transientParent)
     return quickView
+    
+
+  def widgetForQMLUsingQQuickWidget(self, qmlFilename, parentWindow):
+    widget = QQuickWidget()
+    qurl = resourceMgr.urlToQMLResource(resourceSubpath=qmlFilename)
+    widget.setSource(qurl)
+    widget.show()
+    " Return widget both as widget and quickThing having rootObject() "
+    return widget, widget
   
   
   def widgetAndQuickViewForQML(self, qmlFilename, parentWindow):
     '''
     widget containing quickview, and quickview itself.
+    
+    Uses old Qt API: QQuickView and CreateWindowContainer
     See QTBUG-32934, you can't find the QWindow from the container QWidget, you must remember it.
     '''
     quickview = self.quickViewForQML(qmlFilename)
     widget = self.widgetForQuickView(quickview, parentWindow)
     return widget, quickview
+  
   
   
   def widgetForQML(self, qmlFilename, parentWindow):
