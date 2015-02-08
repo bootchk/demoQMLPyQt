@@ -1,6 +1,6 @@
-import QtQuick 2.3
+import QtQuick 2.4
 // import built-in non-basic types, i.e. ApplicationWindow
-import QtQuick.Controls 1.2
+import QtQuick.Controls 1.3
 
 
 // Built-in Qt Quick control

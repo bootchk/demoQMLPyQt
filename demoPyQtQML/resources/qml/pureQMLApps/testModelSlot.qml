@@ -2,8 +2,8 @@
 Test a model having slot get(str) returning type Person.
 */
 
-import QtQuick 2.2
-import QtQuick.Controls 1.2
+import QtQuick 2.4
+import QtQuick.Controls 1.3
 
 import People 1.0
 import SlottedModel 1.0

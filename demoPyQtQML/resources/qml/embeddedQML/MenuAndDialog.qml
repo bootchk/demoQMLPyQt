@@ -7,8 +7,8 @@ Menu item of context menu in turn calls dialogDelegate to show another dialog.
 This sequence did not work on OSX??
 */
 
-import QtQuick 2.3
-import QtQuick.Controls 1.2
+import QtQuick 2.4
+import QtQuick.Controls 1.3
 import QtQuick.Dialogs 1.2
 
 import "../menus" as MyMenu

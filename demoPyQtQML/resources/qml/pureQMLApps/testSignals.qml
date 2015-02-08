@@ -2,8 +2,8 @@
 // See "QML Object Attributes" 5.3
 // Also: http://stackoverflow.com/questions/19131084/pyqt5-qml-signal-to-python-slot
 
-import QtQuick 2.2
-import QtQuick.Controls 1.2
+import QtQuick 2.4
+import QtQuick.Controls 1.3
 
 
 import People 1.0

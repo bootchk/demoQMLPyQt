@@ -14,6 +14,18 @@ This project has several qml files that demo:
 - signals between QML and Python (back and forth)
 - architectures: nesting QML inside a QWidget (but reverse is not possible in Qt Quick 2 in Qt 5 ? but is Qt Quick 1 still in Qt 5?
 
+Versions
+--------
+
+I don't know of a good process for keeping up-to-date on QtQuick versions.
+I think you must do global search and replace to update the versions in your QML code.
+
+This uses the latest versions for Qt5.4?:
+QtQuick 2.4
+Controls 1.3
+Dialogs 1.2
+Layouts 1.1
+
 
 Dependency
 ----------

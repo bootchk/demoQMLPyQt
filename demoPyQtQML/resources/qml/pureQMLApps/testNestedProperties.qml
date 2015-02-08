@@ -2,8 +2,8 @@
 Test a model with nested properties can be accessed from QML via qualification (dot notation) syntax.
 */
 
-import QtQuick 2.2
-import QtQuick.Controls 1.2
+import QtQuick 2.4
+import QtQuick.Controls 1.3
 
 
 import Clan 1.0
